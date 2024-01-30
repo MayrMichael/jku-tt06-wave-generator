@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+The project is a generator for various waves such as sine, sawtooth, triangular and square pulse. 
 
 ## How to test
 
-Explain how to use your project
+To test you have to do following
 
 ## External hardware
 

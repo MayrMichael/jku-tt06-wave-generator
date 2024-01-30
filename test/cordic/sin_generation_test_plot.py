@@ -20,6 +20,5 @@ if __name__ == '__main__':
 
     y_q = cordic.quantize_value_vec(y,lsb)
 
-
     plt.plot(x, data)
     plt.show()

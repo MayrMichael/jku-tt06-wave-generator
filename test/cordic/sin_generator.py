@@ -20,8 +20,6 @@ def sin_gen_debug(sfixed_fract, phase, iterations, n_samples):
     yi_values = np.zeros(n_samples)
     zi_values = np.zeros(n_samples)
 
-
-
     lsb = 2**(-sfixed_fract)
     shift_vector = cordic.gen_shift_vector(iterations)
     angles_vector = cordic.gen_angles_vector(shift_vector, lsb)
