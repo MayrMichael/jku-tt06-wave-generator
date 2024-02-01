@@ -2,19 +2,22 @@
 
 # defaults
 SIM ?= icarus
+
+WAVES = 1
+
 TOPLEVEL_LANG ?= verilog
 
 VERILOG_INCLUDE_DIRS += $(PWD)/../../src/
 
-VERILOG_SOURCES += $(PWD)/../../src/cordic_slice.v
-VERILOG_SOURCES += $(PWD)/../../src/cordic_iterative.v
+VERILOG_SOURCES = $(PWD)/../../src/sin_generator.v
+
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-TOPLEVEL = cordic_iterative
+TOPLEVEL = sin_generator
 
 # MODULE is the basename of the Python test file
-MODULE = test_cordic_iterative
+MODULE = cosim_sin_generator
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim

@@ -1,17 +1,24 @@
-sin: clean
-	make -f makefile.sin
+all: 
+	$(MAKE) cordic_slice 
+	$(MAKE) cordic_iterative 
+	$(MAKE) sin_generator 
+	$(MAKE) wave_generator 
+	$(MAKE) tb
 
-slice: clean
-	make -f makefile.slice
+cordic_slice: clean
+	make -f makefile.cordic_slice
 
-iterative: clean
-	make -f makefile.iterative
+cordic_iterative: clean
+	make -f makefile.cordic_iterative
 
-wave: clean
-	make -f makefile.wave
+sin_generator: clean
+	make -f makefile.sin_generator
 
-tt: clean
-	make -f makefile.tt
+wave_generator: clean
+	make -f makefile.wave_generator
+
+tb: clean
+	make -f makefile.tb
 
 clean:
 	rm -r -f sim_build
