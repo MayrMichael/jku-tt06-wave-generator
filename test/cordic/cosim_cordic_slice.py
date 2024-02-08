@@ -86,7 +86,6 @@ async def cosim_cordic_slice(dut):
 
         await ClockCycles(dut.clk_i, 2)
     
-    if DEBUG:
-        dut._log.info('Test finished')
+    dut._log.info('Test finished')
     
 

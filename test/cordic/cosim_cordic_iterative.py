@@ -112,6 +112,5 @@ async def cosim_cordic_iterative(dut):
             dut.y_i.value = frac2bin(y_input[i + 1], Q7)
             dut.z_i.value = frac2bin(z_input[i + 1], Q7)
     
-    if DEBUG:
-        dut._log.info('Test finished')
+    dut._log.info('Test finished')
     

@@ -76,8 +76,7 @@ async def cosim_wave_generator(dut):
     # wait for the moment where all samples are checked
     await Join(forked)
 
-    if DEBUG:
-        dut._log.info('Test finished')
+    dut._log.info('Test finished')
 
 async def check_value(dut, calc_values, Q):
     """Checks the values of the dut against the values from the virtual prototype

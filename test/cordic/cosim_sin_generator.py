@@ -99,7 +99,6 @@ async def cosim_sin_generator(dut):
         # test the output value of the sin_generator
         assert dut.data_o.value.binstr == frac2bin(calc_values[i], Q7).binstr
    
-    if DEBUG:
-        dut._log.info('Test finished')
+    dut._log.info('Test finished')
     
 
