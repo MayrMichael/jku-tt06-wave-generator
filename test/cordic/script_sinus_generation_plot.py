@@ -21,10 +21,10 @@ import matplotlib.pyplot as plt
 
 # configuration values for the sinus
 Q7 = 7
-# PHASE = 0.308807373046875
-PHASE = 0.01
+PHASE = 0.308807373046875
+#PHASE = 0.01
 CORDIC_ITERATIONS = 6
-NUMBER_OF_SAMPLES = 1000
+NUMBER_OF_SAMPLES = 300
 
 # create data of the sin
 data = vp_sin_generator.sin_gen(Q7, PHASE, CORDIC_ITERATIONS, NUMBER_OF_SAMPLES)

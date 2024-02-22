@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 # configuration values
 Q = 7
-NUMBER_OF_SAMPLES = 1000
+NUMBER_OF_SAMPLES = 300
 PHASE = 0.01
 AMP_LSB_MULTI = 40
 
@@ -38,10 +38,17 @@ x = np.arange(NUMBER_OF_SAMPLES)
 
 # create the figure of the square puls
 plt.figure()
-plt.title('Quantized triangle and sawtooth signals')
+plt.title('Quantized triangle signal')
 plt.xlabel('N')
 plt.ylabel('y')
 plt.plot(x, data_tri, label='triangle data')
+
+
+plt.figure()
+plt.title('Quantized sawtooth signal')
+plt.xlabel('N')
+plt.ylabel('y')
 plt.plot(x, data_saw, label='sawtooth data')
-plt.legend()
+
+
 plt.show()

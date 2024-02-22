@@ -21,9 +21,9 @@ import matplotlib.pyplot as plt
 
 # configuration values
 Q = 7
-NUMBER_OF_SAMPLES = 1000
+NUMBER_OF_SAMPLES = 300
 PHASE = 0.01
-THRESHOLD = 0.4
+THRESHOLD = 0.2
 
 # create the data of the square puls sequence
 data_sq = vp_square_puls.square_puls(Q, PHASE, THRESHOLD, NUMBER_OF_SAMPLES)

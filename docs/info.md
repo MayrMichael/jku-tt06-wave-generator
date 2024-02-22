@@ -8,6 +8,9 @@ You can also include images in this folder and reference them in the markdown. E
 -->
 
 ## How it works
+
+![](Signals.png)
+
 The Wave Generator is a project that deals with the generation of various signals. These signals are a sine function, a triangle function, a sawtooth function and a square pulse function. The desired function, which then provides the output value, can be selected using simple control signals. 
 
 Each calculated value is generated as a 2's complement in the fixed point system Q7 and then output accordingly either via the parallel or the serial interface. An SPI interface is used for the serial output, but this can only write and not read. However, this makes it possible to connect a DAC to the wave generator in order to convert the digital signals into analogue signals. 
@@ -49,7 +52,7 @@ $$ \text{Amplitude parameter} = k A$$
 $$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![image](Blockdia_sine.png)
+![](Blockdia_sine.png)
 
 
 ### Square pulse wave

@@ -28,7 +28,7 @@ async def test_spi_master_only_tx_single_cs(dut):
     # generate values for testing
     n_samples = 16
     samples = list(range(n_samples))
-    samples.extend([128, 255, 128, 255, 0])
+    samples.extend([128, 255, 128, 255, 0, 85])
     
     # init values for the dut
     dut.data_in_valid_strobe_i.value = 0

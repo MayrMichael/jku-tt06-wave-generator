@@ -25,3 +25,5 @@ test/strobe/results.xml
 test/triangle/sim_build
 test/triangle/__pycache__/
 test/triangle/results.xml
+
+test/del
