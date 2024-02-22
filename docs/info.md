@@ -49,7 +49,7 @@ $$ \text{Amplitude parameter} = k A$$
 $$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![](\docs\Blockdia_sine.png)
+![](Blockdia_sine.png)
 
 ### Square pulse wave
 The square pulse wave is again calculated with a phase accumulator and a threshold dectection unit (see figure below). The phase accumulator generates a sawtooth function $x[n]$, where the difference between one value and its subsequent value is the phase parameter. An exception occurs in the case of an overflow. In this case, the difference is much greater, as the value moves to the negative end of the number format. This generated value is then compared with the current amplitude parameter. In this case, the amplitude parameter is a threshold parameter. The output is then generated according to the following principle: If $x[n]$ is greater than the amplitude parameter, $y[n]$ has the value $1-2^{-7}$. Conversely, if $x[n]$ is less than or equal to the amplitude parameter, $y[n]$ becomes $-1+2^{-7}$. 
@@ -59,7 +59,7 @@ $$ \text{Amplitude parameter} = 1-2^{-7} - (2-2^{-7})\frac{T_{on}}{T}$$
 $$\text{Phase parameter} = \frac{2-2^{-7}}{T f_s}$$
 Where $T > \frac{1}{f_s}$ is the desired period duration and $T_{on} \in (0, T)$ is the desired pulse width.
 
-![](\docs\Blockdia_square_pulse.png)
+![](Blockdia_square_pulse.png)
 
 ### Sawtooth wave
 The sawtooth wave is basically generated with a phase accumulator (see figure below). The only difference is that $y[n]$ is fed back instead of $x[n]$. This makes it possible to generate a sawtooth function with a specific amplitude value. The threshold dectection unit thus ensures that the function remains in the range from minus amplitude parameter to amplitude parameter. To do this, $x[n]$ is checked and if this value is greater than the amplitude parameter, $y[n]$ is set to the negative value of the amplitude parameter. If this does not occur, $x[n]$ becomes $y[n]$.
@@ -69,7 +69,7 @@ $$ \text{Amplitude parameter} = A$$
 $$\text{Phase parameter} = 2 A\frac{f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![](\docs\Blockdia_sawtooth.png)
+![](Blockdia_sawtooth.png)
 
 ### Triangle wave
 With the triangle wave, the current value is taken from the sawtooth wave and with every second overflow, therefore a change from a positive value to a negative value (see figure below), the output value is multiplied by -1.
@@ -79,12 +79,12 @@ $$ \text{Amplitude parameter} = A$$
 $$\text{Phase parameter} = 4 A\frac{f}{f_s}$$
 
 
-![](\docs\Blockdia_triangle.png)
+![](Blockdia_triangle.png)
 
 ### SPI Interface
 The calculated value is output serially via the SPI interface. The below timing diagram  is used for this purpose. SPI is used in this project with CPOL=0 and CPHA=0. The SPI CLK requires 4 cycles of $f_{clk}$ for one cycle. The other properties can be taken from the timing diagram. 
 
-![](\docs\SPI_Dia.png)
+![](SPI_Dia.png)
 
 ## How to test
 The following procedure is required to generate the desired wave:
