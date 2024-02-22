@@ -38,18 +38,24 @@ The value generation can be stopped by the pin enable (see pinout section) with 
 
 ### Sine wave
 The sine wave is generated using a Cordic algorithm, as shown in figure \ref{fig:block_sin}. This Cordic algorithm is used in the mode rotation and with the coordinate system circular. The following function is implemented in the Cordic algorithm:
-$$x_n = x_0 \cos(z_0) - y_0 \sin(z_0)\\y_n = y_0 \cos(z_0) + x_0 \sin(z_0)$$
+$$x_n = x_0 \cos(z_0) - y_0 \sin(z_0)$$
+$$y_n = y_0 \cos(z_0) + x_0 \sin(z_0)$$
 To generate a sine wave from this formula, $y_0$ must be set to 0 and $x_0$ must be loaded with the desired amplitude. The current phase $z_0$ of the sine wave is calculated in advance by a phase accumulator. This then transfers its current phase value to the Z input of the Cordic algorithm. This allows the Cordic algorithm to generate a sine wave at the Y output, which is then subsequently output.
 
 Due to a property of the Cordic algorithm, the amplitude parameter must be scaled by a factor $k$ before loading into the chip. This factor $k$ has a value of $0.6073$. This prevents an overflow in the Q7 format and the correct values are calculated by the algorithm.
 
 This results in the following formulae for the parameters:
-$$ \text{Amplitude parameter} = k A \\ \text{Phase parameter} = \frac{2f}{f_s}$$
+$$ \text{Amplitude parameter} = k A$$
+$$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
 ![](\docs\Block_sawtooth.drawio.png)
 
+![](docs\Block_sawtooth.drawio.png)
+
 ![](Block_sawtooth.drawio.png)
+
+![](\Block_sawtooth.drawio.png)
 
 ## How to test
 
