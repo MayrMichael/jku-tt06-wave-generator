@@ -49,7 +49,8 @@ $$ \text{Amplitude parameter} = k A$$
 $$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![](Blockdia_sine.png)
+![image](Blockdia_sine.png)
+
 
 ### Square pulse wave
 The square pulse wave is again calculated with a phase accumulator and a threshold dectection unit (see figure below). The phase accumulator generates a sawtooth function $x[n]$, where the difference between one value and its subsequent value is the phase parameter. An exception occurs in the case of an overflow. In this case, the difference is much greater, as the value moves to the negative end of the number format. This generated value is then compared with the current amplitude parameter. In this case, the amplitude parameter is a threshold parameter. The output is then generated according to the following principle: If $x[n]$ is greater than the amplitude parameter, $y[n]$ has the value $1-2^{-7}$. Conversely, if $x[n]$ is less than or equal to the amplitude parameter, $y[n]$ becomes $-1+2^{-7}$. 
