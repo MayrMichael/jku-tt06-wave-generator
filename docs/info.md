@@ -37,7 +37,7 @@ The bit vector wavefrom (see pinout section) is used to select the desired funct
 The value generation can be stopped by the pin enable (see pinout section) with a LOW level and continued with a HIGH level.
 
 ### Sine wave
-The sine wave is generated using a Cordic algorithm, as shown in figure \ref{fig:block_sin}. This Cordic algorithm is used in the mode rotation and with the coordinate system circular. The following function is implemented in the Cordic algorithm:
+The sine wave is generated using a Cordic algorithm, as shown in the below figure. This Cordic algorithm is used in the mode rotation and with the coordinate system circular. The following function is implemented in the Cordic algorithm:
 $$x_n = x_0 \cos(z_0) - y_0 \sin(z_0)$$
 $$y_n = y_0 \cos(z_0) + x_0 \sin(z_0)$$
 To generate a sine wave from this formula, $y_0$ must be set to 0 and $x_0$ must be loaded with the desired amplitude. The current phase $z_0$ of the sine wave is calculated in advance by a phase accumulator. This then transfers its current phase value to the Z input of the Cordic algorithm. This allows the Cordic algorithm to generate a sine wave at the Y output, which is then subsequently output.
@@ -49,18 +49,61 @@ $$ \text{Amplitude parameter} = k A$$
 $$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![](\docs\Block_sawtooth.png)
+![](\docs\Blockdia_sine.png)
 
-![](docs\Block_sawtooth.png)
+### Square pulse wave
+The square pulse wave is again calculated with a phase accumulator and a threshold dectection unit (see figure below). The phase accumulator generates a sawtooth function $x[n]$, where the difference between one value and its subsequent value is the phase parameter. An exception occurs in the case of an overflow. In this case, the difference is much greater, as the value moves to the negative end of the number format. This generated value is then compared with the current amplitude parameter. In this case, the amplitude parameter is a threshold parameter. The output is then generated according to the following principle: If $x[n]$ is greater than the amplitude parameter, $y[n]$ has the value $1-2^{-7}$. Conversely, if $x[n]$ is less than or equal to the amplitude parameter, $y[n]$ becomes $-1+2^{-7}$. 
 
-![](Block_sawtooth.png)
+The following formulae are required for the parameters:
+$$ \text{Amplitude parameter} = 1-2^{-7} - (2-2^{-7})\frac{T_{on}}{T}$$
+$$\text{Phase parameter} = \frac{2-2^{-7}}{T f_s}$$
+Where $T > \frac{1}{f_s}$ is the desired period duration and $T_{on} \in (0, T)$ is the desired pulse width.
 
-![](\Block_sawtooth.png)
+![](\docs\Blockdia_square_pulse.png)
+
+### Sawtooth wave
+The sawtooth wave is basically generated with a phase accumulator (see figure below). The only difference is that $y[n]$ is fed back instead of $x[n]$. This makes it possible to generate a sawtooth function with a specific amplitude value. The threshold dectection unit thus ensures that the function remains in the range from minus amplitude parameter to amplitude parameter. To do this, $x[n]$ is checked and if this value is greater than the amplitude parameter, $y[n]$ is set to the negative value of the amplitude parameter. If this does not occur, $x[n]$ becomes $y[n]$.
+
+The following formulae are required for the parameters:
+$$ \text{Amplitude parameter} = A$$
+$$\text{Phase parameter} = 2 A\frac{f}{f_s}$$
+Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
+
+![](\docs\Blockdia_sawtooth.png)
+
+### Triangle wave
+With the triangle wave, the current value is taken from the sawtooth wave and with every second overflow, therefore a change from a positive value to a negative value (see figure below), the output value is multiplied by -1.
+
+The following formulas are required for the parameters:
+$$ \text{Amplitude parameter} = A$$
+$$\text{Phase parameter} = 4 A\frac{f}{f_s}$$
+
+
+![](\docs\Blockdia_triangle.png)
+
+### SPI Interface
+The calculated value is output serially via the SPI interface. The below timing diagram  is used for this purpose. SPI is used in this project with CPOL=0 and CPHA=0. The SPI CLK requires 4 cycles of $f_{clk}$ for one cycle. The other properties can be taken from the timing diagram. 
+
+![](\docs\SPI_Dia.png)
 
 ## How to test
+The following procedure is required to generate the desired wave:
 
-To test you have to do following
+1) Initialisation 
+    - Reset the device.
+    - The enable pin should be connected to GND.
+2) Choose the desired wave
+    - Set the code for the desired wave on the waveform pins.
+3) Calculate the amplitude and the phase parameter with the formulars form the above sections.
+4) Set amplitude parameter
+    - Load the calculated results on the parameter pins
+    - Then send a puls to the set amplitude pin
+5) Set phase parameter
+    - Load the calculated results on the parameter pins
+    - Then send a puls to the set phase pin
+6) Enable the output generation
+7) Now the chip generates the desired wave
+
 
 ## External hardware
-
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Through the SPI interface it is possible to get an analogue signal through a suitable DAC. However, this DAC must fulfill the requirements of the SPI interface. 
