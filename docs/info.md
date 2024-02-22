@@ -95,7 +95,7 @@ The following procedure is required to generate the desired wave:
 
 1) Initialisation 
     - Reset the device.
-    - The enable pin should be connected to GND.
+    - The enable pin should be connected to LOW.
 2) Choose the desired wave
     - Set the code for the desired wave on the waveform pins.
 3) Calculate the amplitude and the phase parameter with the formulars form the above sections.
@@ -106,7 +106,8 @@ The following procedure is required to generate the desired wave:
     - Load the calculated results on the parameter pins
     - Then send a puls to the set phase pin
 6) Enable the output generation
-7) Now the chip generates the desired wave
+    - The enable pin should be connected to HIGH.
+8) Now the chip generates the desired wave and output the values on the parallel and serial interface.
 
 
 ## External hardware
