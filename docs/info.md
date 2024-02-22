@@ -49,13 +49,13 @@ $$ \text{Amplitude parameter} = k A$$
 $$\text{Phase parameter} = \frac{2f}{f_s}$$
 Where $A \in [-1+2^{-7}, 1-2^{-7}]$ is the desired amplitude and $f \in (0, \frac{f_s}{2}]$ is the desired frequency.
 
-![](\docs\Block_sawtooth.drawio.png)
+![](\docs\Block_sawtooth.png)
 
-![](docs\Block_sawtooth.drawio.png)
+![](docs\Block_sawtooth.png)
 
-![](Block_sawtooth.drawio.png)
+![](Block_sawtooth.png)
 
-![](\Block_sawtooth.drawio.png)
+![](\Block_sawtooth.png)
 
 ## How to test
 
